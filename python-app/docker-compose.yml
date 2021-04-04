@@ -1,0 +1,18 @@
+version: '3'
+services:
+  pythonapp:
+    build: .
+    networks:
+      - hello-dapr
+  pythonapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+    "-app-id", "pythonapp",
+    "-placement-host-address", "placement:50006",
+      "-components-path", "/components"]
+    depends_on:
+      - pythonapp
+    network_mode: "service:pythonapp"
+networks:
+  hello-dapr:
+    external: true

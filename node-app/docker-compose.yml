@@ -1,0 +1,25 @@
+version: '3'
+services:
+  nodeapp:
+    build: .
+    ports:
+      - "50002:50002"
+      - "3000:3000"
+    networks:
+      - hello-dapr
+  nodeapp-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "nodeapp",
+     "-app-port", "3000",
+     "-placement-host-address", "placement:50006",
+     "-dapr-grpc-port", "50002",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+    depends_on:
+      - nodeapp
+    network_mode: "service:nodeapp"
+networks:
+  hello-dapr:
+    external: true
