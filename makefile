@@ -1,5 +1,3 @@
-DOCKER_COMPOSE:=docker-compose
-
 .PHONY: build
 build:
 	pushd dapr-components && make build && popd
