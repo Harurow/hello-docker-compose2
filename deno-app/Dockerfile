@@ -1,7 +1,7 @@
-FROM hayd/alpine-deno:latest
+FROM hayd/alpine-deno:1.8.3
 WORKDIR /app
 USER deno
 COPY . .
-RUN deno cache app.ts
+RUN deno cache ./src/app.ts
 EXPOSE 3001
-CMD ["run", "--allow-net", "--allow-env", "app.ts"]
+CMD ["run", "--allow-net", "--allow-env", "./src/app.ts"]

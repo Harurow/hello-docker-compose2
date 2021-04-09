@@ -1,6 +1,6 @@
 version: '3'
 services:
   pythonapp:
-    command: /bin/sh -c "pip install ptvsd && python -u app.py debug"
+    command: /bin/sh -c "pip install ptvsd && python -u ./src/app.py debug"
     ports:
       - 9231:9229
