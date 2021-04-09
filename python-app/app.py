@@ -1,6 +1,7 @@
 import time
 import requests
 import os
+import sys
 import random
 
 dapr_port = os.getenv("DAPR_HTTP_PORT", 3500)
@@ -39,20 +40,29 @@ nodeapp_order = get_order("nodeapp")
 denoapp_neworder = post_neworder("denoapp", random.randint(0, 1000))
 denoapp_order = get_order("denoapp")
 
-print("start")
+
+def main():
+    print("start")
+
+    while True:
+        nodeapp_neworder()
+        time.sleep(0.5)
+
+        denoapp_neworder()
+        time.sleep(0.5)
+
+        nodeapp_order()
+        time.sleep(0.5)
+
+        denoapp_order()
+        time.sleep(0.5)
+
+    print("stop")
 
 
-while True:
-    nodeapp_neworder()
-    time.sleep(0.5)
-
-    denoapp_neworder()
-    time.sleep(0.5)
-
-    nodeapp_order()
-    time.sleep(0.5)
-
-    denoapp_order()
-    time.sleep(0.5)
-
-print("stop")
+if __name__ == '__main__':
+    if (len(sys.argv) > 1) and (sys.argv[1] == "debug"):
+        import ptvsd
+        print("waiting...")
+        ptvsd.enable_attach(address=('0.0.0.0', 9229))
+    main()

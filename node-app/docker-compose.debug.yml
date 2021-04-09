@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nodeapp:
+    command: node --inspect=0.0.0.0:9229 app.js
+    ports:
+      - "50002:50002"
+      - "3000:3000"
+      - "9229:9229"

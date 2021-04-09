@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "address": "localhost",
+            "port": 9229,
+            "localRoot": "${workspaceFoler}\\node-app",
+            "remoteRoot": "/app",
+            "protocol": "inspector",
+        },
+        {
+            "name": "Docker: Attach to deno",
+            "type": "node",
+            "request": "attach",
+            "address": "localhost",
+            "port": 9230,
+            "localRoot": "${workspaceFoler}\\deno-app",
+            "remoteRoot": "/app",
+            "protocol": "inspector",
+        },
+        {
+            "name": "Docker: Attach to python",
+            "type": "python",
+            "request": "attach",
+            "port": 9231,
+            "host": "localhost",
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/python-app",
+                    "remoteRoot": "/app"
+                }
+            ]
+        }
+    ]
+}
