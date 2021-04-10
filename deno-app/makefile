@@ -11,19 +11,11 @@ build:
 
 .PHONY: up
 up:
-ifneq ($(DAPR_IMAGE),)
-	cp $(DOCKER_COMPOSE_FILE) $(DOCKER_COMPOSE_OVERRIDE_FILE)
-	sed -i 's,daprio\/daprd:edge,$(DAPR_IMAGE),g' $(DOCKER_COMPOSE_OVERRIDE_FILE)
-endif
 	$(DOCKER_COMPOSE) up -d
 
 .PHONY: debug
 debug:
-ifneq ($(DAPR_IMAGE),)
-	cp $(DOCKER_COMPOSE_FILE) $(DOCKER_COMPOSE_OVERRIDE_FILE)
-	sed -i 's,daprio\/daprd:edge,$(DAPR_IMAGE),g' $(DOCKER_COMPOSE_OVERRIDE_FILE)
-endif
-	$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) -f $(DOCKER_COMPOSE_DEBUG_FILE) up -d
+	$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) -f $(DOCKER_COMPOSE_DEBUG_FILE) up --build -d
 
 .PHONY: down
 down:

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  denoapp:
+    command: go run ./src/app.go
+    ports:
+      - "50004:50004"
+      - "3002:3002"
+      - "9230:9229"

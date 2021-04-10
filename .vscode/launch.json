@@ -7,8 +7,8 @@
             "request": "attach",
             "address": "localhost",
             "port": 9229,
-            "localRoot": "${workspaceFoler}\\node-app",
-            "remoteRoot": "/app",
+            "localRoot": "${workspaceFoler}/node-app/src",
+            "remoteRoot": "/app/src",
             "protocol": "inspector",
         },
         {
@@ -17,8 +17,8 @@
             "request": "attach",
             "address": "localhost",
             "port": 9230,
-            "localRoot": "${workspaceFoler}\\deno-app",
-            "remoteRoot": "/app",
+            "localRoot": "${workspaceFoler}\\deno-app\\src",
+            "remoteRoot": "/app/src",
             "protocol": "inspector",
         },
         {
@@ -29,8 +29,8 @@
             "host": "localhost",
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}/python-app",
-                    "remoteRoot": "/app"
+                    "localRoot": "${workspaceFolder}/python-app/src",
+                    "remoteRoot": "/app/src"
                 }
             ]
         }

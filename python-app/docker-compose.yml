@@ -7,8 +7,8 @@ services:
   pythonapp-dapr:
     image: "daprio/daprd:edge"
     command: ["./daprd",
-    "-app-id", "pythonapp",
-    "-placement-host-address", "placement:50006",
+      "-app-id", "pythonapp",
+      "-placement-host-address", "placement:50006",
       "-components-path", "/components"]
     depends_on:
       - pythonapp

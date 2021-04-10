@@ -17,6 +17,7 @@ def post_neworder(app_id, num_of_start):
         try:
             message = {"data": {"orderId": n}}
             requests.post(url, json=message)
+            print("ok: POST {0} / neworder".format(app_id))
         except Exception as e:
             print(e)
         n += 1
@@ -29,7 +30,7 @@ def get_order(app_id):
     def get_impl():
         try:
             response = requests.get(url, json={})
-            print(response)
+            print("ok: GET {0} / order > {1}".format(app_id, response.text))
         except Exception as e:
             print(e)
     return get_impl
@@ -37,8 +38,12 @@ def get_order(app_id):
 
 nodeapp_neworder = post_neworder("nodeapp", random.randint(0, 1000))
 nodeapp_order = get_order("nodeapp")
+
 denoapp_neworder = post_neworder("denoapp", random.randint(0, 1000))
 denoapp_order = get_order("denoapp")
+
+goapp_neworder = post_neworder("goapp", random.randint(0, 1000))
+goapp_order = get_order("goapp")
 
 
 def main():
@@ -46,16 +51,22 @@ def main():
 
     while True:
         nodeapp_neworder()
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         denoapp_neworder()
-        time.sleep(0.5)
+        time.sleep(0.2)
+
+        goapp_neworder()
+        time.sleep(0.2)
 
         nodeapp_order()
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         denoapp_order()
-        time.sleep(0.5)
+        time.sleep(0.2)
+
+        goapp_order()
+        time.sleep(0.2)
 
     print("stop")
 

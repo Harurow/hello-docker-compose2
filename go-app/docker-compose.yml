@@ -1,25 +1,25 @@
 version: '3'
 services:
-  denoapp:
+  goapp:
     build: .
     ports:
-      - "50003:50003"
-      - "3001:3001"
+      - "50004:50004"
+      - "3002:3002"
     networks:
       - hello-dapr
-  denoapp-dapr:
+  goapp-dapr:
     image: "daprio/daprd:edge"
     command: ["./daprd",
-      "-app-id", "denoapp",
-      "-app-port", "3001",
+      "-app-id", "goapp",
+      "-app-port", "3002",
       "-placement-host-address", "placement:50006",
-      "-dapr-grpc-port", "50003",
+      "-dapr-grpc-port", "50004",
       "-components-path", "/components"]
     volumes:
       - "./components/:/components"
     depends_on:
-      - denoapp
-    network_mode: "service:denoapp"
+      - goapp
+    network_mode: "service:goapp"
 networks:
   hello-dapr:
     external: true

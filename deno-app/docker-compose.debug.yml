@@ -1,7 +1,7 @@
 version: '3'
 services:
   denoapp:
-    command: deno run --inspect-brk=0.0.0.0:9229 -A ./src/app.ts
+    command: deno run --inspect=0.0.0.0:9229 -A ./src/app.ts
     ports:
       - "50003:50003"
       - "3001:3001"
